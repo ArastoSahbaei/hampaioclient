@@ -72,7 +72,7 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 	}, [])
 
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename="/calendar">
 			<Suspense fallback={<BackDrop />} />
 			{children}
 			<Switch>
