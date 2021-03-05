@@ -2,7 +2,7 @@ import Axios from 'axios'
 import LocalStorage from '../cache/LocalStorage'
 
 const API = Axios.create({
-	baseURL: 'http://localhost:3001',
+	baseURL: 'https://hampaioproduction.herokuapp.com/',
 	headers: { 'Content-Type': 'application/json' }
 })
 
