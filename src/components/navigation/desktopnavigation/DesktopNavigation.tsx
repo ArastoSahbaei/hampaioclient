@@ -32,6 +32,7 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 
 	return (
 		<div className='desktopNavigationWrapper'>
+			<h1>LOL</h1>
 			<img className='navigationLogotype'
 				onClick={() => history.push(RoutingPath.homeView)}
 				src={Logotype}
