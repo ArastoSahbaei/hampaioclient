@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/hampaioclient/static/css/main.7737e991.chunk.css",
-    "main.js": "/hampaioclient/static/js/main.428373d5.chunk.js",
-    "main.js.map": "/hampaioclient/static/js/main.428373d5.chunk.js.map",
+    "main.js": "/hampaioclient/static/js/main.755c8251.chunk.js",
+    "main.js.map": "/hampaioclient/static/js/main.755c8251.chunk.js.map",
     "runtime-main.js": "/hampaioclient/static/js/runtime-main.1c71bba5.js",
     "runtime-main.js.map": "/hampaioclient/static/js/runtime-main.1c71bba5.js.map",
     "static/js/2.18e631a0.chunk.js": "/hampaioclient/static/js/2.18e631a0.chunk.js",
@@ -29,6 +29,6 @@
     "static/js/runtime-main.1c71bba5.js",
     "static/js/2.18e631a0.chunk.js",
     "static/css/main.7737e991.chunk.css",
-    "static/js/main.428373d5.chunk.js"
+    "static/js/main.755c8251.chunk.js"
   ]
 }
