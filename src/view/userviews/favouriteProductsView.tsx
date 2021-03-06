@@ -64,14 +64,21 @@ export const favouriteProductsView = () => {
 			</div>)
 	}
 
-	return (
-		<div>
-			<p className='productViewTitle'>My Favourite</p>
-			<p className='productViewSubTitle'>
-				Explore our curated collection of homewares made in Australia and Japan. <br />
+	const displayTitle = () => {
+		return authenticatedUser.favouriteProducts.length == 0
+			? <h1>You have not added any favourite products yet</h1>
+			: <div><p className='productViewTitle'>My Favourite</p>
+				<p className='productViewSubTitle'>
+					Explore our curated collection of homewares made in Australia and Japan. <br />
 				From candles and pottery to organic towels and Japanese pairing knives, <br />
 				each piece has been thoughtfully selected. <br />
-			</p>
+				</p>
+			</div>
+	}
+
+	return (
+		<div>
+			{displayTitle()}
 			<div className='favouriteProductsViewContainer'>
 				{displayFavouriteProducts()}
 			</div>
