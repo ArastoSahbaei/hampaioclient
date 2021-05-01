@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import APIService from '../../shared/api/service/APIService'
+import { UserContext } from '../../shared/provider/UserProvider'
 
 export const UserProfileView: React.FC = () => {
+	const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
+
 
 	return (
 		<div>
 			<h1>Your info</h1>
-			<p>Name:</p>
-			<p>Email:</p>
-			<button>Change Password</button>
+			<form>
+				<span>Name: </span><input value={authenticatedUser.personalDetails.firstName} /> <br />
+				<span>Email: </span><input />
+			</form>
+			<button onClick={() => APIService.updateValuesOfExistingUser()}>Change Password</button>
 			<hr />
 
 			<h1>Shipping Address</h1>
@@ -24,6 +30,7 @@ export const UserProfileView: React.FC = () => {
 
 			<hr />
 			<button> Logout </button>
+			<button onClick={() => console.log(authenticatedUser.personalDetails.firstName)}>AuthenticatedUser</button>
 		</div>
 	)
 }

@@ -55,7 +55,20 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 				shoppingCart: response.data?.shoppingCart[0],
 				cartId: response.data?.shoppingCart[0]?._id,
 				newsLetterSubscription: response.data?.newsLetterSubscription[0],
-				favouriteProducts: response.data?.favouriteProducts
+				favouriteProducts: response.data?.favouriteProducts,
+				personalDetails: {
+					firstName: response.data.personalDetails.firstName,
+					lastName: response.data.personalDetails.lastName,
+					gender: response.data.personalDetails.gender,
+					country: response.data.personalDetails.country,
+					adress: response.data.personalDetails.adress,
+					secondaryAdress: response.data.personalDetails.secondaryAdress,
+					ZIPcode: response.data.personalDetails.ZIPcode,
+					county: response.data.personalDetails.county,
+					postOrt: response.data.personalDetails.postOrt,
+					phone: response.data.personalDetails.phone,
+					secondaryPhone: response.data.personalDetails.secondaryPhone
+				}
 			})
 		} else {
 			setAuthenticatedUser({
