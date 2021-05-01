@@ -1,5 +1,5 @@
 import './DisplayProducts.css'
-import { useEffect, useState, useContext } from 'react'
+import { useContext } from 'react'
 import APIService from '../../../../shared/api/service/APIService'
 import { UserContext } from '../../../../shared/provider/UserProvider'
 import { ToggleCartContext } from '../../../../shared/provider/ToggleCartProvider'
@@ -7,21 +7,13 @@ import { useHistory } from 'react-router-dom'
 import RoutingPath from '../../../../routes/RoutingPath'
 import heartImg from '../../../../shared/images/heart.svg'
 import likedHeartImg from '../../../../shared/images/filledHeart.svg'
+import { useFetch } from '../../../../hooks/useFetch'
 
 export const DisplayProducts = () => {
 	const history = useHistory()
-	const [products, setProducts] = useState<any>([])
 	const [, setIsShoppingBagOpen] = useContext(ToggleCartContext)
 	const [authenticatedUser, setAuthenticatedUser] = useContext<any>(UserContext)
-
-	const fetchData = async () => {
-		const { data } = await APIService.getAllProducts()
-		setProducts(data)
-	}
-
-	useEffect(() => {
-		fetchData()
-	}, [])
+	const { data, loading, error } = useFetch(APIService.getAllProducts)
 
 	const addToCart = async (productId: string) => {
 		try {
@@ -59,26 +51,28 @@ export const DisplayProducts = () => {
 	}
 
 	const displayData = () => {
-		return products.map((item: any) =>
-			<div className='displayProductWrapper' key={item?._id}>
-				<div>
-					<div className='productImgWrapper'>
-						<img className='productImg' src={'https://picsum.photos/200/200'} alt='' onClick={() => history.push(RoutingPath.productDetailsView(item._id), item)} />
+		if (!loading) {
+			return data?.map((item: any) =>
+				<div className='displayProductWrapper' key={item?._id}>
+					<div>
+						<div className='productImgWrapper'>
+							<img className='productImg' src={'https://picsum.photos/200/200'} alt='' onClick={() => history.push(RoutingPath.productDetailsView(item._id), item)} />
+						</div>
+						<p className='pBrand'>Herbaman Co.</p>
+						{displayColoredHeartIfProductIsLiked(item._id)}
+						<p className='pTitle'>{item?.title}</p>
+						<p className='pPrice'>{item?.price} kr</p>
 					</div>
-					<p className='pBrand'>Herbaman Co.</p>
-					{displayColoredHeartIfProductIsLiked(item._id)}
-					<p className='pTitle'>{item?.title}</p>
-					<p className='pPrice'>{item?.price} kr</p>
-				</div>
-				<div className='addToCartButton' onClick={() => addToCart(item._id)}>Addera till varukorg</div>
-			</div>)
+					<div className='addToCartButton' onClick={() => addToCart(item._id)}>Addera till varukorg</div>
+				</div>)
+		}
 	}
 
 	return (
-		<div className='displayProductsContainer'>
-			{/* <button>FILTRERA</button>
-			<button>SORTERA</button> */}
-			{displayData()}
-		</div>
+		loading
+			? <h1>LOADING..</h1>
+			: <div className='displayProductsContainer'>
+				{displayData()}
+			</div>
 	)
 }
